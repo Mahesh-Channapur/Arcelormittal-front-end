@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'alloy-scrap', loadChildren: () => import('./views/alloy-scrap/alloy-scrap.module').then(m => m.AlloyScrapModule) },
   { path: 'smb', loadChildren: () => import('./views/smb/smb.module').then(m => m.SmbModule) },
   { path: 'management', loadChildren: () => import('./views/my-management/my-management.module').then(m => m.MyManagementModule) },
+  {path:'registration',loadChildren: () => import('./views/registration/registration.module').then(m => m.RegistrationModule)},
   {
     path: '**',
     component: SidebarComponent,

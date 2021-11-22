@@ -20,7 +20,8 @@ const APP_CONTAINERS = [
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    
   ],
   imports: [
     BrowserModule,
