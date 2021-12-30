@@ -1,3 +1,4 @@
+import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,6 +19,7 @@ export class SingleUserComponent implements OnInit {
 
   //user-group
   user_group_name : any;
+  name:any;
 
   constructor(
     private apiString: CitGlobalConstantService,
@@ -39,6 +41,9 @@ export class SingleUserComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       user_group: ['', Validators.required]
     });
+
+    //testing
+    
 
 
   }
@@ -86,9 +91,11 @@ export class SingleUserComponent implements OnInit {
   }
   user_group(){
     this.apiMethod.get_request(this.apiString.group_user.user_access).subscribe(data=>{
-      console.log('User_group : ',data)
-      this.user_group_name = data
+      // console.log('User_group : ',data)
+      this.user_group_name = data;
+      this.name = this.user_group_name.data
     })
+    console.log(this.name)
   }
   submit() {
     // console.log(this.firstFormGroup.value, this.secondFormGroup.value)

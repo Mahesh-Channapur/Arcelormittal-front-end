@@ -281,7 +281,7 @@ export class CitGlobalConstantService {
     };
 
     group_user : any = {
-        user_access : this.baseUrl + "user_access"
+        user_access : 'http://127.0.0.1:5000/user_access'
     }
 
 }
