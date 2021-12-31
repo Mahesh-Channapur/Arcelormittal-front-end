@@ -97,7 +97,7 @@
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>User Group</mat-label>
                                 <mat-select formControlName="user_group"  required>
-                                    <mat-option *ngFor="let item of name">{{item.group_description}}  </mat-option>
+                                    <mat-option *ngFor="let item of name" [value]="item.group_description">{{item.group_description}}  </mat-option>
                                     
                                 </mat-select>
                             </mat-form-field>
