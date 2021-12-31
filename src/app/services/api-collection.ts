@@ -276,7 +276,7 @@ export class CitGlobalConstantService {
 
     //mine
     single_user : any = {
-        valid_user : this.baseUrl + "valid_user",
+        valid_user : "//127.0.0.1:5000/valid_user",
         insert_values : this.baseUrl + "insert_values"
     };
 
