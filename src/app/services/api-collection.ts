@@ -274,14 +274,18 @@ export class CitGlobalConstantService {
         single_user : this.baseUrl + "management"
     };
 
-    //mine
+    //User-management
     single_user : any = {
-        valid_user : "//127.0.0.1:5000/valid_user",
-        insert_values : this.baseUrl + "insert_values"
+        valid_user : "http://127.0.0.1:5000/existUsername",
+        valid_email : "http://127.0.0.1:5000/existEmail",
+        insert_values : "http://127.0.0.1:5000/insert_values"
+
+        
     };
 
     group_user : any = {
-        user_access : 'http://127.0.0.1:5000/user_access'
+        user_access : 'http://127.0.0.1:5000/user_access',
+        group_description : 'http://127.0.0.1:5000/group_description'
     }
 
 }

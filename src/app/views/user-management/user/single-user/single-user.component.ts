@@ -2,8 +2,10 @@ import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { indexOf } from 'lodash';
 import { CitGlobalConstantService } from 'src/app/services/api-collection';
 import { ApiService } from 'src/app/services/api.service';
+
 
 @Component({
   selector: 'app-single-user',
@@ -27,13 +29,13 @@ export class SingleUserComponent implements OnInit {
     private router: Router,
     private _formBuilder: FormBuilder) { }
   ngOnInit() {
-    this.updateBreadCrumb()
+    // this.updateBreadCrumb()
 
     this.firstFormGroup = this._formBuilder.group({
       first_name: ['', Validators.required],
       middle_name: [''],
       last_name: ['', Validators.required],
-      username: ['', Validators.required],
+      username: [ '',Validators.required],
       email: ['', Validators.required],
       phone_no: ['', Validators.required],
       address: ['', Validators.required],
@@ -43,7 +45,7 @@ export class SingleUserComponent implements OnInit {
     });
 
     //testing
-    
+    this.user_group()
 
 
   }
@@ -72,34 +74,79 @@ export class SingleUserComponent implements OnInit {
   }
 
   // Demographic
+  result:any;
+
   valid_user(){
-    let body =  this.firstFormGroup.value
+    let body = {
+      username : this.firstFormGroup.value.username
+    } 
     
-    this.apiMethod.post_request(this.apiString.single_user.valid_user,body).subscribe(data=>{
-      console.log(data)
+    this.apiMethod.get_request_Param(this.apiString.single_user.valid_user,body).subscribe(data=>{
+      
+      this.result = data
+      console.log('r = ',this.result.status)
     })
-    console.log(body)
+    if(this.result.status==="Exist Username"){
+      this.apiMethod.popupMessage('error', 'UserName Exist!!')
+    }
+    else{
+      this.apiMethod.popupMessage('success', 'Okk!!')
+    }
+    
+    // console.log(this.result.status)
+  }
+  valid_email(){
+    let body = {
+      email : this.firstFormGroup.value.email
+    } 
+    
+    this.apiMethod.get_request_Param(this.apiString.single_user.valid_email,body).subscribe(data=>{
+      
+      this.result = data
+      // console.log('r = ',this.result.status)
+
+    })
+    if(this.result.status==="Exist-Email"){
+      this.apiMethod.popupMessage('error', 'Email Already Exist!!')
+    }
+    else{
+      this.apiMethod.popupMessage('success', 'Okk!!')
+    }
+    console.log(this.firstFormGroup.value.email)
   }
 
   insert_values(){
-    let body = {
-      first_group : this.firstFormGroup.value
-   }
+    let body = this.firstFormGroup.value;
+
    this.apiMethod.post_request(this.apiString.single_user.insert_values, body).subscribe(data=>{
     console.log('hiii',data)
    })
+   this.apiMethod.popupMessage('success','Updated Successfully !!')
   }
+
   user_group(){
+    
     this.apiMethod.get_request(this.apiString.group_user.user_access).subscribe(data=>{
       // console.log('User_group : ',data)
       this.user_group_name = data;
       this.name = this.user_group_name.data
+      console.log(typeof (this.name))
     })
-    console.log(this.name)
+    
   }
+  
+  selected_value(val : any){
+    let param = val
+      this.apiMethod.get_request_Param(this.apiString.group_user.group_description,param).subscribe(data=>{
+        console.log(data)
+      })
+    
+    console.log(param)
+  }
+
   submit() {
     // console.log(this.firstFormGroup.value, this.secondFormGroup.value)
-    
+    this.insert_values()
   }
 
  
