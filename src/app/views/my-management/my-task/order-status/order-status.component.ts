@@ -38,18 +38,21 @@ export class OrderStatusComponent implements OnInit {
     private apiString: CitGlobalConstantService,
     private apiMethod: ApiService,
     private fb: FormBuilder
-  ) { }
+  ) { 
+    this.filterForm = this.fb.group({
+    search_string: [''],
+    order_status: [''],
+    sold_to:[''],
+    ship_to: [''],
+    sales_doc_item_number: [''],
+    // DELV_WEEK: [''],
+    limit: [100],
+    offset: [0]
+  })
+}
 
   ngOnInit(): void {
-    this.filterForm = this.fb.group({
-      search_string: [''],
-      Order_Status: [''],
-      Ship_To: [''],
-      Sales_Doc_Number: [''],
-      // DELV_WEEK: [''],
-      // limit: [100],
-      // offset: [0]
-    })
+   
     this.getOfferStatus()
 
   }

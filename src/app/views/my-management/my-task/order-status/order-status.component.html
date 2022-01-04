@@ -24,7 +24,7 @@
         <div class="col-3">
             <mat-form-field appearance="outline">
                 <mat-label>Order Status</mat-label>
-                <mat-select FormControlName="Order_Status">
+                <mat-select FormControlName="Order_Status"  (selectionChange)="getOfferStatus()">
                     <mat-option *ngFor="let orderStatus of resultdata?.order_status" [value]="orderStatus">
                         {{orderStatus}}
                     </mat-option>
@@ -35,7 +35,7 @@
         <div class="col-3">
             <mat-form-field appearance="outline">
                 <mat-label>Sold To</mat-label>
-                <mat-select FormControlName='Sold_To'>
+                <mat-select FormControlName='Sold_To'  (selectionChange)="getOfferStatus()">
                     <mat-option *ngFor="let soldTo of resultdata?.sold_to" [value]="soldTo">
                         {{soldTo}}
                     </mat-option>                  
@@ -45,7 +45,7 @@
         <div class="col-3">
             <mat-form-field appearance="outline">
                 <mat-label>Ship To</mat-label>
-                <mat-select FormControlName='Ship_To'>
+                <mat-select FormControlName='Ship_To'  (selectionChange)="getOfferStatus()">
                     <mat-option *ngFor="let shipTo of resultdata?.ship_to" [value]="shipTo">
                         {{shipTo}}
                     </mat-option>                
@@ -56,7 +56,7 @@
         <div class="col-3">
             <mat-form-field appearance="outline">
                 <mat-label>Sales Doc Number</mat-label>
-                <input matInput placeholder="Odder ID" FormControlName='Sales_Doc_Number'>
+                <input matInput placeholder="Odder ID" FormControlName='Sales_Doc_Number'  (keyup.enter)="getOfferStatus()">
             </mat-form-field>
         </div>
         <!-- <div class="col-3">
