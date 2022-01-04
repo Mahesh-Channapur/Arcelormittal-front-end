@@ -46,7 +46,7 @@ export class OrderStatusComponent implements OnInit {
       Order_Status: [''],
       Ship_To: [''],
       Sales_Doc_Number: [''],
-      DELV_WEEK: [''],
+      // DELV_WEEK: [''],
       limit: [100],
       offset: [0]
     })
@@ -67,21 +67,25 @@ export class OrderStatusComponent implements OnInit {
     console.log(body)
     // this.resultdata = this.offer
     this.resultdata = []
-    this.apiMethod.get_request(this.apiString.myTask.orderStatus).subscribe((result: any) => {
-      this.loadingRouteConfig = false
-      this.resultdata = result
-      this.totalCount = result.Count
-      this.dataSource = new MatTableDataSource<orderStatus>(result.data)
-      setTimeout(() => {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    setTimeout(() => {
+      this.apiMethod.get_request_Param(this.apiString.myTask.orderStatus, body).subscribe((result: any) => {
+        this.loadingRouteConfig = false
+        this.resultdata = result     
+         this.totalCount=result.Count
+        this.dataSource = new MatTableDataSource<orderStatus>((this.resultdata.data))
+        console.log(this.resultdata)
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
 
-      }, 3000);
+        }, 1000);
 
-    }, error => {
-      this.loadingRouteConfig = false
-      this.apiMethod.popupMessage('error', 'Error while getting offer status')
-    })
+      }, error => {
+        this.loadingRouteConfig = false
+        this.apiMethod.popupMessage('error', 'Error while getting offer status')
+      })
+    }, 1000);
+
   }
   pageChangeCall(event: any) {
     console.log(event)
