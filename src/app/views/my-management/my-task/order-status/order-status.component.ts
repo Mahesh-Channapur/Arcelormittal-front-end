@@ -18,7 +18,7 @@ export class OrderStatusComponent implements OnInit {
     "confirmed_delivery_date",
     "customer_reference",
     "delivering_plant",
-    "delv_week",
+    // "delv_week",
     "order_status",
     "quantity",
     "sales_doc_item_number",
@@ -46,9 +46,9 @@ export class OrderStatusComponent implements OnInit {
       Order_Status: [''],
       Ship_To: [''],
       Sales_Doc_Number: [''],
-      DELV_WEEK: [''],
-      limit: [100],
-      offset: [0]
+      // DELV_WEEK: [''],
+      // limit: [100],
+      // offset: [0]
     })
     this.getOfferStatus()
 
@@ -82,7 +82,7 @@ export class OrderStatusComponent implements OnInit {
 
       }, error => {
         this.loadingRouteConfig = false
-        this.apiMethod.popupMessage('error', 'Error while getting offer status')
+        this.apiMethod.popupMessage('error', 'Error while getting order status')
       })
     }, 1000);
 
