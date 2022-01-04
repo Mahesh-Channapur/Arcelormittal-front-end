@@ -46,7 +46,7 @@ export class OrderStatusComponent implements OnInit {
       Order_Status: [''],
       Ship_To: [''],
       Sales_Doc_Number: [''],
-      // DELV_WEEK: [''],
+      DELV_WEEK: [''],
       limit: [100],
       offset: [0]
     })

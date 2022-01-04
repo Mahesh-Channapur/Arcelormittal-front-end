@@ -26,8 +26,8 @@ export interface pendingInvoiceStatus {
 export interface orderStatus {
     "confirmed_delivery_date": any,
     "customer_reference": any,
-    "delivering_plant": any,
-    "delv_week": any,
+    // "delivering_plant": any,
+     "delv_week": any,
     "order_status": any,
     "quantity": any,
     "sales_doc_item_number": any,
